@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Inscriptions en attente</h1>
+
+        {% if inscriptions is not empty %}
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Date de la Formation</th>
+                            <th>Produit</th>
+                            <th>Département</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for inscription in inscriptions %}
+                            <tr>
+                                <td>{{ inscription.laFormation.dateDebut|date('d/m/Y') }}</td>
+                                <td>{{ inscription.laFormation.leProduit.libelle }}</td>
+                                <td>{{ inscription.laFormation.departement }}</td>
+                                <td>
+                                    <span class="badge {{ inscription.statut == 0 ? 'bg-warning' : 'bg-success' }}">
+                                        {{ inscription.statut == 0 ? 'En attente' : 'Approuvé' }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="{{ path('app_validerInscription', {'id': inscription.id}) }}" class="btn btn-success btn-sm">
+                                        Valider
+                                    </a>
+                                    <a href="{{ path('app_refuserInscription', {'id': inscription.id}) }}" class="btn btn-danger btn-sm">
+                                        Refuser
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="alert alert-info">Aucune inscription en attente.</div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord Responsable{% endblock %}
+
+{% block body %}
+    <h1>Liste des employe de statut 0 et nom Castaing</h1>
+
+    {% if emps is not empty %}
+        <table border="solid 1">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for emp in emps %}
+                    <tr>
+                        <td>{{ emp.nom }}</td>
+                        <td>{{ emp.prenom }}</td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+    {% endif %}
+
+    <h1>Liste Recherche par nom prénom</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.nom) }}
+        {{ form_row(form.prenom) }}
+        {{ form_row(form.rechercher) }}
+    {{ form_end(form) }}
+
+
+    {% if insc is not empty %}
+        <table border="solid 1">
+            <thead>
+                <tr>
+                    <th>Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in insc %}
+                    <tr>
+                        <td>{{ i.statut }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Formations pour {{ month }}/{{ year }}</h1>
+
+    {% if formations is not empty %}
+        <table border="1" style="width:100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Département</th>
+                    <th>Date de Début</th>
+                    <th>Produit</th>
+                    <th>Pays</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for formation in formations %}
+                    <tr>
+                        <td>{{ formation.departement }}</td>
+                        <td>{{ formation.dateDebut|date("d/m/Y") }}</td>
+                        <td>{{ formation.leProduit.libelle }}</td>
+                        <td>{{ formation.pays }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucune formation disponible pour {{ month }}/{{ year }}.</p>
+    {% endif %}
+
+    <a href="{{ path('app_afficher') }}">Retour à la liste complète</a>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord Responsable{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="text-center">
+            <h1 class="mb-4">Bienvenue, {{ user.prenom }} {{ user.nom }}</h1>
+            <p class="lead">Vous êtes connecté en tant que <strong>responsable</strong>.</p>
+        </div>
+
+        <h2 class="mt-4 text-center">Actions disponibles</h2>
+        
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card text-white bg-primary shadow-lg">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Gérer les formations</h5>
+                        <p class="card-text">Consultez et administrez les formations.</p>
+                        <a href="{{ path('app_voirInscription') }}" class="btn btn-light">Accéder</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card text-white bg-success shadow-lg">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Ajouter une formation</h5>
+                        <p class="card-text">Créer une formation.</p>
+                        <a href="{{ path('form_ajoutFormation') }}" class="btn btn-light">Ajouter</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card text-white bg-warning shadow-lg">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Gérer les inscriptions</h5>
+                        <p class="card-text">Accepter ou refuser les inscriptions des employés.</p>
+                        <a href="{{ path('app_voirInscription') }}" class="btn btn-light">Gérer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

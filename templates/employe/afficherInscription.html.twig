@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Inscriptions{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <a href="{{ path('app_employe_dashboard') }}" class="btn btn-info btn-sm">Retour</a>
+    </div>
+    <div class="container mt-4">
+        <h1 class="mb-4">Mes Inscriptions</h1>
+
+        {% if inscriptions is not empty %}
+            <div class="card shadow p-4">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Date de Formation</th>
+                                <th>Produit</th>
+                                <th>Département</th>
+                                <th>Statut</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for inscription in inscriptions %}
+                                <tr>
+                                    <td>{{ inscription.laFormation.dateDebut|date('d/m/Y') }}</td>
+                                    <td>{{ inscription.laFormation.leProduit.libelle }}</td>
+                                    <td>{{ inscription.laFormation.departement }}</td>
+                                    <td>
+                                        {% if inscription.statut == 0 %}
+                                            <span class="badge bg-warning text-dark">En attente</span>
+                                        {% elseif inscription.statut == 1 %}
+                                            <span class="badge bg-success">Approuvée</span>
+                                        {% else %}
+                                            <span class="badge bg-danger">Refusée</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% else %}
+            <div class="alert alert-info">Vous n'avez aucune inscription.</div>
+        {% endif %}
+    </div>
+{% endblock %}

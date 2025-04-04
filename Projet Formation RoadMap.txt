@@ -1,0 +1,31 @@
+Projet Formation RoadMap
+
+Prérequis :
+ 3 controllers : 
+
+	loginController
+	serviceFormationController
+	inscriptionController
+
+Etapes : 
+1 o Définir les classes 
+2 o Création d'une formation
+
+	o Faire un formulaire Création de produits
+	o Faire un formulaire Création de formation
+	
+3 - Connexion (authentification sans haschage)
+	o Si c'est le responsable
+		affiche tt les formations avec un bouton supprimer
+			pour le bouton supprimer vérifier d'abord les inscription contenant la formations
+		créer les formations
+		Valider ou refuser les formations en cours de validation
+			afficher tt les inscription en cours de valudation avec un bouton accepter ou refuser
+	o Si c'est un employe basique
+
+		Afficher tt les formations auquels il n'est pas inscrit avec un bouton inscription
+		Afficher toutes les formations accepté ou refusé (statut V ou R)
+
+ligne pour bien mettre le formulaire alignés.
+
+{% form_theme form 'form_table_layout.html.twig' %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Vous êtes dans la liste des formations :</h1>
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+
+
+    {% if formations is not empty %}
+        <table border="1" style="width:100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Département</th>
+                    <th>Date de Début</th>
+                    <th>Produit</th>
+                    <th>Pays</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for formation in formations %}
+                    <tr>
+                        <td><b>{{ formation.departement }}</b></td>
+                        <td>{{ formation.dateDebut|date("m/d/Y") }}</td>
+                        <td>{{ formation.leProduit.libelle }}</td>
+                        <td>{{formation.pays}}</td>
+                        <td>
+                            <a href="{{ path('app_suppFormation', {'id': formation.id}) }}">Supprimer</a> |
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucune formation disponible.</p>
+    {% endif %}
+
+    <a href="{{ path('form_ajoutFormation') }}">Ajouter une formation</a>
+    
+{% endblock %}

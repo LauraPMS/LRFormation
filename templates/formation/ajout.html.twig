@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Ajouter une formation</h1>
+        <div class="card p-4 shadow">
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
